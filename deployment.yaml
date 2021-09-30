@@ -4,6 +4,7 @@ kind: Deployment
 metadata:
   name: conversao-temperatura
 spec:
+  replicas: 2
   selector:
     matchLabels:
       app: conversao-temperatura
@@ -14,7 +15,7 @@ spec:
     spec:
       containers:
         - name: conversao-temperatura
-          image: lcs2606/conversao-temperatura
+          image: lcs2606/conversao-temperatura:v1
           ports:
             - containerPort: 8080
 ---
