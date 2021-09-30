@@ -1,0 +1,34 @@
+#Deployment conversao-temperatura
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: conversao-temperatura
+spec:
+  selector:
+    matchLabels:
+      app: conversao-temperatura
+  template:
+    metadata:
+      labels:
+        app: conversao-temperatura
+    spec:
+      containers:
+        - name: conversao-temperatura
+          image: lcs2606/conversao-temperatura
+          ports:
+            - containerPort: 8080
+---
+#Service conversao-temperatura
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-conversao-temperatura
+spec:
+  selector:
+    app: conversao-temperatura
+  ports:
+    - port: 80
+      targetPort: 8080
+      nodePort: 30000
+  type: NodePort
+
